@@ -1,4 +1,4 @@
-package org.github.emersonl33.testcase;
+package testcase;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
