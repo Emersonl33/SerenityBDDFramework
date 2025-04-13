@@ -3,7 +3,7 @@ package testcase.components;
 
 import lombok.Getter;
 import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.WebElement;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -12,16 +12,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class LoginOkComponents extends PageObject {
 
     @FindBy(id = "submit")
-    private WebElement botaoSubmit;
+    private WebElementFacade botaoSubmit;
 
     @FindBy(id = "username")
-    private WebElement inputUsuario;
+    private WebElementFacade inputUsuario;
 
     @FindBy(id = "password")
-    private WebElement inputSenha;
+    private WebElementFacade inputSenha;
 
     @FindBy(xpath = "//h1[@class=\"post-title\"]")
-    private WebElement mensagem;
+    private WebElementFacade mensagem;
 
     public void validarTexto(){
         assertThat(mensagem.isDisplayed()).isTrue();

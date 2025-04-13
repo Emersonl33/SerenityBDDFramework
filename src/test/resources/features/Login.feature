@@ -9,3 +9,4 @@ Feature: Login no sistema
     Given : que o usuário está na tela de login
     When : o usuário insere credenciais válidas
     Then : o usuário é redirecionado para a página inicial
+
