@@ -1,10 +1,11 @@
 package amazonAutomation.pages;
 
 import amazonAutomation.CommonActions;
+import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
-public class UserAuthPage extends CommonActions {
+public class UserAuthPage extends PageObject {
 
     @FindBy(xpath = "//a[@id='nav-logo-sprites']")
     public WebElementFacade logoAmazon;

@@ -1,5 +1,6 @@
 package amazonAutomation.steps;
 
+import amazonAutomation.HomePage;
 import amazonAutomation.actions.UserAuthActions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,9 +12,12 @@ public class UserAuthSteps extends PageObject {
 
     @Managed
     UserAuthActions userAuthActions;
+    HomePage homePage;
 
     @Given("that the user is on the HomePage")
     public void that_the_user_is_on_the_home_page() {
+        homePage.open();
+
         userAuthActions.homePageValidate();
     }
 
