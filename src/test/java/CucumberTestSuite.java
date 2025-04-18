@@ -4,10 +4,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/",   // Caminho para os arquivos .feature
-        glue = "java",                    // Pacote das definições de steps
-        plugin = {"pretty"}                         // Plugins adicionais, como "pretty" para saída formatada
+        features = "src/test/resources/features/",
+        glue = "amazonAutomation.steps",
+        plugin = {"pretty"}
 )
 public class CucumberTestSuite {
 
 }
+

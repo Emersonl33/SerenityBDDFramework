@@ -5,7 +5,7 @@ Feature: validate functions of cart consistence
   To enjoy a seamless experience
 
   @Login @smoke
-  Scenario: : User authentication
+  Scenario: User authentication
     Given that the user is on the HomePage
     When the user access account and lists tab to login
     And he authenticates with his email and password
