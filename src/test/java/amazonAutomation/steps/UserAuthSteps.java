@@ -1,26 +1,20 @@
 package amazonAutomation.steps;
 
-import amazonAutomation.HomePage;
 import amazonAutomation.actions.UserAuthActions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.core.pages.PageObject;
-import org.openqa.selenium.WebDriver;
 
 public class UserAuthSteps extends PageObject {
 
     @Steps
     UserAuthActions userAuthActions;
 
-    HomePage homePage;
-
     @Given("that the user is on the HomePage")
     public void that_the_user_is_on_the_home_page() {
-        homePage = new HomePage();
-        homePage.open();
+        open();
         userAuthActions.homePageValidate();
     }
 
