@@ -2,25 +2,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <!-- Basic project information / Informações básicas do projeto -->
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.github.emersonl33</groupId>
     <artifactId>SerenityBDDFramework</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>Sample Serenity BDD project using Cucumber</name>
 
+    <!-- Project properties / Propriedades do projeto  -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release> <!-- Java Version {Java 21} -->
         <serenity.version>4.2.6</serenity.version>
         <assertj.version>3.26.3</assertj.version>
         <cucumber-junit-platform-engine.version>7.20.1</cucumber-junit-platform-engine.version>
-        <webdriver.base.url></webdriver.base.url>
+        <webdriver.base.url></webdriver.base.url> <!-- Pode ser configurado em tempo de execução/ Can be configured in runtime -->
         <aspectj.version>1.9.22.1</aspectj.version>
     </properties>
 
+    <!-- Management of denpendencies for Junit 5 / Gerenciamento de dependências (BOM) para JUnit 5 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -34,6 +35,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!--  Lombok to reduce boilerplate / Lombok para reduzir código repetitivo -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -41,12 +43,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- JUnit 5 - API, Engine and support parameterized tests / JUnit 5 (Jupiter) - API, Engine e suporte a testes parametrizados -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Optionally: parameterized tests support -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -67,6 +69,8 @@
             <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Serenity BDD Core an integration with JUnit 5 and Screenplay / Serenity BDD Core e integração com JUnit 5 e Screenplay  -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
@@ -97,31 +101,39 @@
             <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Serenity integration with Cucumber 7 / Integração do Serenity com Cucumber 7  -->
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-cucumber</artifactId>
             <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!--  Execution Cucumber Engine for JUnit Platform / Engine de execução do Cucumber para JUnit Platform -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
             <version>${cucumber-junit-platform-engine.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- AssertJ for fluent assertions / AssertJ para fluent assertions -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
+
+        <!-- Allure integration for beautiful reports / Integração com Allure para geração de relatórios bonitos -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
             <version>2.29.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+
+        <!-- AspectJ for the weaving used by Serenity / AspectJ necessário para o weaving usado pelo Serenity -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -132,6 +144,7 @@
 
     <build>
         <plugins>
+            <!--  Plugin for execute unit Tests with AspectJ support / Plugin para executar os testes unitários com suporte ao AspectJ -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -143,11 +156,14 @@
                         <include>**/Test*</include>
                         <include>**/*TestSuite</include>
                     </includes>
+                    <!-- necessary for Serenity weaving / Necessário para o weaving do Serenity -->
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                 </configuration>
             </plugin>
+
+            <!-- Allure plugin to generate reports during verify step / Plugin do Allure para gerar relatórios na fase verify  -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -155,36 +171,14 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>report</goal> <!-- Just generate the report with <goal>report</goal>-->
+                            <goal>report</goal>
                         </goals>
                         <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
-            <!-- <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-failsafe-plugin</artifactId>
-              <version>3.5.1</version>
-              <configuration>
-                <includes>
-                  <include>**/*Test.java</include>
-                  <include>**/Test*.java</include>
-                  <include>**/*TestSuite.java</include>
-                </includes>
-                <systemPropertyVariables>
-                  <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
-                  <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
-                </systemPropertyVariables>
-              </configuration>
-              <executions>
-                <execution>
-                  <goals>
-                    <goal>integration-test</goal>
-                    <goal>verify</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>-->
+
+            <!-- Compilation plugin with Java 21 / Plugin para compilação com Java 21  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -193,10 +187,12 @@
                     <source>21</source>
                     <target>21</target>
                     <compilerArgs>
-                        <arg>-parameters</arg>
+                        <arg>-parameters</arg> <!-- Preserves parameter names in bytecode/ Preserva nomes de parâmetros no bytecode -->
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!--  Serenity Plugin to generate aggregate reports (commented, you can activate it if you want /Plugin do Serenity para gerar relatórios agregados (comentado, pode ativar se quiser usar)) -->
             <!--
             <plugin>
               <groupId>net.serenity-bdd.maven.plugins</groupId>
@@ -221,7 +217,8 @@
                   <version>${serenity.version}</version>
                 </dependency>
               </dependencies>
-            </plugin> -->
+            </plugin>
+            -->
         </plugins>
     </build>
 
