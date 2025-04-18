@@ -17,7 +17,7 @@
         <serenity.version>4.2.6</serenity.version>
         <assertj.version>3.26.3</assertj.version>
         <cucumber-junit-platform-engine.version>7.20.1</cucumber-junit-platform-engine.version>
-        <webdriver.base.url></webdriver.base.url> <!-- Pode ser configurado em tempo de execução/ Can be configured in runtime -->
+        <webdriver.base.url></webdriver.base.url> <!--  Can be configured in runtime /Pode ser configurado em tempo de execução-->
         <aspectj.version>1.9.22.1</aspectj.version>
     </properties>
 
@@ -35,6 +35,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
         <!--  Lombok to reduce boilerplate / Lombok para reduzir código repetitivo -->
         <dependency>
             <groupId>org.projectlombok</groupId>

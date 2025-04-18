@@ -1,30 +1,30 @@
 package amazonAutomation.pages;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class UserAuthPage extends PageObject {
 
-    @FindBy(xpath = "//a[@id='nav-logo-sprites']")
-    public WebElementFacade logoAmazon;
+    WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(60));
 
-    @FindBy(xpath = ("//button[@aria-label='Expand Account and Lists']"))
-    public WebElementFacade buttonExpandAccountAndLists;
+    public WebElement logoAmazon (){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='nav-logo-sprites']")));
+    }
 
-    @FindBy(xpath = ("//a[@data-nav-ref='nav_signin']"))
-    public WebElementFacade buttonSigninNavBar;
+    public WebElement languageButton (){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='nav-flyout-button nav-icon nav-arrow' and @aria-label='Expand to Change Language or Country']")));
+    }
 
-    @FindBy(xpath = ("//input[@id='ap_email']"))
-    public WebElementFacade inputEmail;
+    @FindBy (xpath = "//div[@id='nav-flyout-icp']")
+    public WebElementFacade languageSelect;
 
-    @FindBy(xpath = ("//input[@id='continue']"))
-    public WebElementFacade buttonContinue;
-
-    @FindBy(xpath = ("//input[@id='ap_password']"))
-    public WebElementFacade inputPassword;
-
-    @FindBy(xpath = "//input[@id='signInSubmit']")
-    public WebElementFacade buttonSignIn;
-
+    @FindBy (xpath = "//span[@class='icp-nav-link-inner']")
+    public WebElementFacade languageLabel;
 }

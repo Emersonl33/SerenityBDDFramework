@@ -18,19 +18,13 @@ public class UserAuthSteps extends PageObject {
         userAuthActions.homePageValidate();
     }
 
-
-    @When("the user access account and lists tab to login")
-    public void the_user_access_account_and_lists_tab_to_login() {
-
+    @When("the user selects the desired language")
+    public void theUserSelectsTheDesiredLanguage() {
+        userAuthActions.selectLanguage();
     }
-
-    @When("he authenticates with his email and password")
-    public void he_authenticates_with_his_email_and_password() {
-
-    }
-
-    @Then("the HomePage is showed again with the message Hello, username in the account and lists tab")
-    public void the_home_page_is_showed_again_with_the_message_hello_username_in_the_account_and_lists_tab() {
+    @Then("the HomePage is displayed in the new language")
+    public void theHomePageIsDisplayedInTheNewLanguage() {
+        userAuthActions.validateLanguageChanges();
 
     }
 

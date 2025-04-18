@@ -1,13 +1,14 @@
 package amazonAutomation;
 
+import groovy.util.logging.Slf4j;
 import net.serenitybdd.core.pages.PageObject;
-import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
-
+@Slf4j
 public class CommonActions extends PageObject {
 
-    public void applyHighlights(WebElementFacade element, String borderColor, String backgroundColor) {
+    public void applyHighlights(WebElement element, String borderColor, String backgroundColor) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
         int timeOutMilliSeconds = 500;
 
@@ -22,6 +23,49 @@ public class CommonActions extends PageObject {
                             "}, " + timeOutMilliSeconds + ");",
                     element
             );
+        }
+    }
+
+    public static void clickWithRetry(WebElement element, int attempts) {
+        int i = 0;
+
+        while (i++ < attempts) {
+            try {
+                if
+                (element.isDisplayed()) {
+                    element.click();
+                    return;
+                }
+            } catch (Exception ignored) {}
+            try {
+                Thread.sleep(1300);
+            } catch (InterruptedException e){
+                Thread.currentThread().interrupt();
+                break;
+            }
+            throw new
+                    RuntimeException("Element is not visible in" + attempts + "attempts!");
+        }
+    }
+
+    public static void locateRetry(WebElement element, int attempts) {
+        int i = 0;
+
+        while (i++ < attempts) {
+            try {
+                if
+                (element.isDisplayed()) {
+                    return;
+                }
+            } catch (Exception ignored) {}
+            try {
+                Thread.sleep(1300);
+            } catch (InterruptedException e){
+                Thread.currentThread().interrupt();
+                break;
+            }
+            throw new
+                    RuntimeException("Element is not visible in" + attempts + "attempts!");
         }
     }
 }
