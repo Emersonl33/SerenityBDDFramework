@@ -16,5 +16,3 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "io.cucumber.core.plugin.SerenityReporterParallel, io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm, pretty, json:target/jsonReports/cucumber-report.json, timeline:build/test-results/timeline")
 public class RunCucumberTest {
 }
-
-
