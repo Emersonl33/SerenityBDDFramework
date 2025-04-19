@@ -43,7 +43,7 @@ It helps you write cleaner, more maintainable, and more readable test scenarios.
 Este projeto é um exemplo simples de como integrar o **Serenity BDD** com **Allure Reports** em um framework de automação de testes baseado em Java e Selenium.
 
 ## O que é Serenity BDD?
-O **Serenity BDD** é um framework de automação de testes projetado para facilitar a escrita de testes automatizados de maneira mais fácil e estruturada. Ele ajuda você a escrever cenários de teste mais limpos, mais sustentáveis e mais legíveis.
+O **Serenity BDD** é um framework de automação de testes projetado para tornar a escrita de testes automatizados mais fácil e estruturada. Ele ajuda escrever cenários de teste mais limpos, sustentáveis e legíveis.
 
 ## O que é o Allure?
 O **Allure** é uma ferramenta de relatórios de testes flexível e multilíngue, que apresenta uma representação gráfica clara do que foi testado, com informações detalhadas com passo a passo, logs e capturas de tela.
