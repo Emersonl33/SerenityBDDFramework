@@ -30,8 +30,13 @@ It helps you write cleaner, more maintainable, and more readable test scenarios.
 2. Generate Allure Reports (Make sure you have Allure CLI installed)
    ```bash
    allure generate target/allure-results --clean -o target/allure-report
-### Where take the reports
-1. The report will available in directory
+### Where you can get the reports
+1. The report will available in directory ./target/allure-report/index.html
+<img src="./instructionsImages/directoryStructure.png" alt="directory-image" style="height:390px; width:300px;"/>
+
+### Design of the generated reports
+1. the generated report comes with an index.html file and display the following home page
+<img src="./instructionsImages/reportPage.png" alt="report-image" style="height:480; width:680px;"/>
 
 # Português
 
